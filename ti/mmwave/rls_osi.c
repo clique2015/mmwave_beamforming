@@ -103,8 +103,8 @@ int osiSyncObjDelete(osiSyncObj_t* pSyncObj) {
   if ((pSyncObj == NULL) || (*pSyncObj == NULL)) {
     return OSI_INVALID_PARAMS;
   }
-  sem_close(*pSyncObj);
-  sem_destroy(*pSyncObj);
+  sem_close((sem_t*)*pSyncObj);
+  sem_destroy((sem_t*)*pSyncObj);
   return OSI_OK;
 }
 
@@ -114,7 +114,7 @@ int osiSyncObjSignal(osiSyncObj_t* pSyncObj) {
     return OSI_INVALID_PARAMS;
   }
 
-  int status = sem_post(*pSyncObj);
+  int status = sem_post((sem_t*)*pSyncObj);
   return OSI_OK;
 }
 
@@ -131,7 +131,7 @@ int osiSyncObjWait(osiSyncObj_t* pSyncObj , osiTime_t Timeout) {
   ts.tv_sec += (Timeout / 1000);
   ts.tv_nsec += (Timeout % 1000) * 1000000;
 
-  RetVal = sem_timedwait(*pSyncObj, &ts);
+  RetVal = sem_timedwait((sem_t*)*pSyncObj, &ts);
   if (RetVal == 0) return OSI_OK;
   else if (RetVal == ETIMEDOUT) return OSI_TIMEOUT;
   else return OSI_OPERATION_FAILED;
@@ -149,7 +149,7 @@ int osiLockObjCreate(osiLockObj_t* pLockObj, char* pName) {
   if (NULL == pLockObj) {
     return OSI_INVALID_PARAMS;
   }
-  *pLockObj = (pthread_mutex_t*) malloc(sizeof(pthread_mutex_t));
+  *pLockObj = malloc(sizeof(pthread_mutex_t));
   if (*pLockObj == NULL) return OSI_OPERATION_FAILED;
 
   pthread_mutex_init(*pLockObj, NULL);
@@ -190,7 +190,7 @@ int osiLockObjDelete(osiLockObj_t* pLockObj) {
     rls_pGloblaLockObj = NULL;
   }
 
-  pthread_mutex_destroy(*pLockObj);
+  pthread_mutex_destroy((pthread_mutex_t*)*pLockObj);
   free(*pLockObj);
   return OSI_OK;
 }
@@ -212,7 +212,7 @@ int osiLockObjLock(osiLockObj_t* pLockObj , osiTime_t Timeout) {
   ts.tv_sec += (Timeout / 1000);
   ts.tv_nsec += (Timeout % 1000) * 1000000;
 
-  RetVal = pthread_mutex_timedlock(*pLockObj, &ts);
+  RetVal = pthread_mutex_timedlock((pthread_mutex_t*)*pLockObj, &ts);
 
   /* Decrement the global lock counter  */
   if (rls_pGloblaLockObj == pLockObj) {
@@ -231,7 +231,7 @@ int osiLockObjUnlock(osiLockObj_t* pLockObj) {
     return OSI_INVALID_PARAMS;
   }
 
-  RetVal = pthread_mutex_unlock(*pLockObj);
+  RetVal = pthread_mutex_unlock((pthread_mutex_t*)*pLockObj);
   if (RetVal != 0) return OSI_OPERATION_FAILED;
   return OSI_OK;
 }
