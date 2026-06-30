@@ -1,7 +1,6 @@
 # Compiler
 CC = gcc
-CFLAGS = -o
-FLAGS = -c -w
+CFLAGS = -c
 
 ODIR = output
 
@@ -9,32 +8,32 @@ ODIR = output
 ROOT_DIR = ti
 
 # MMWavelink
-MMWLINK_IDIR = ${ROOT_DIR}/mmwavelink/src
+MMWLINK_IDIR = $(ROOT_DIR)/mmwavelink/src
 
 mmwlink:
-	@${CC} ${FLAGS} ${MMWLINK_IDIR}/*.c
+	@$(CC) $(CFLAGS) $(MMWLINK_IDIR)/*.c
 
 
 # MMWave Ethernet
-MMWETH_IDIR = ${ROOT_DIR}/ethernet/src
+MMWETH_IDIR = $(ROOT_DIR)/ethernet/src
 
 mmwethernet:
-	@${CC} ${FLAGS} ${MMWETH_IDIR}/*.c
+	@$(CC) $(CFLAGS) $(MMWETH_IDIR)/*.c
 
 
 mmwave: mmwlink mmwethernet
-	@${CC} ${FLAGS} ${ROOT_DIR}/mmwave/*.c
+	@$(CC) $(CFLAGS) $(ROOT_DIR)/mmwave/*.c
 
 cliopt:
-	@${CC} ${FLAGS} opt/*.c
+	@$(CC) $(CFLAGS) opt/*.c
 
 tomlconfig:
-	@${CC} ${FLAGS} toml/*.c
+	@$(CC) $(CFLAGS) toml/*.c
 
 # Build all
 all: mmwlink mmwethernet mmwave cliopt tomlconfig
-	@${CC} ${FLAGS} *.c
-	@${CC} ${CFLAGS} mmwave *.o -lpthread -lm
+	@$(CC) $(CFLAGS) *.c
+	@$(CC) -o mmwave *.o -lpthread -lm
 	@rm -f *.o
 
 build: all
