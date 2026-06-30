@@ -192,7 +192,7 @@ uint32_t configureMimoChirp(uint8_t devId, rlChirpCfg_t chirpCfg) {
   int status = 0;
 
   for (uint8_t i = 0; i < NUM_CHIRPS; i++) {
-    int8_t txIdx = is_in_table(i, (uint8_t *)chripTxTable[devId], 3);
+    int8_t txIdx = is_in_table(i, (uint8_t*)chripTxTable[devId], 3);
 
     // Update chirp config
     chirpCfg.chirpStartIdx = i;

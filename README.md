@@ -6,7 +6,7 @@ runtime engine to try out the millimeter wave radars and their capabilities.
 
 This tool is a Linux driver for the RF and DSP boards, to enable the recording of data
 from a Linux OS. As so, it can be built to run on embedded Linux devices such as
-Raspberry Pi or so.
+Raspberry Pi or alike.
 
 `mmwave` is based on the `mmwavelink` library and build out of the example source
 codes provided by TI.
