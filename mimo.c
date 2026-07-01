@@ -192,7 +192,7 @@ uint32_t configureMimoChirp(uint8_t devId, rlChirpCfg_t chirpCfg) {
   int status = 0;
 
   for (uint8_t i = 0; i < NUM_CHIRPS; i++) {
-    int8_t txIdx = is_in_table(i, chripTxTable[devId], 3);
+    int8_t txIdx = is_in_table(i, (uint8_t*)chripTxTable[devId], 3);
 
     // Update chirp config
     chirpCfg.chirpStartIdx = i;
@@ -469,9 +469,18 @@ void cleanup() {
  *
  * This aim to explicitly call the exit function so that
  * dynamically allocated memory could be freed
+ *
+ * @param signum Signal number. Ignored here.
  */
-void signal_handler () {
-  exit(1);
+void signal_handler (int signum) {
+  switch (signum) {
+    case SIGINT:
+      printf("\nCTRL+C pressed. Exiting...\n");
+      exit(1);
+      break;
+    default:
+      return;
+  }
 }
 
 

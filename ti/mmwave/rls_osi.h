@@ -106,7 +106,7 @@ typedef unsigned int osiTime_t;
 
     \note On each porting or platform the type could be whatever is needed - integer, structure etc.
 */
-typedef sem_t* osiSyncObj_t;
+typedef void* osiSyncObj_t;
 
 /*!
     \brief type definition for a locking object container
@@ -117,7 +117,7 @@ typedef sem_t* osiSyncObj_t;
 
     \note On each porting or platform the type could be whatever is needed - integer, structure etc.
 */
-typedef pthread_mutex_t* osiLockObj_t;
+typedef void* osiLockObj_t;
 
 /*!
     \brief type definition for a spawn entry callback
