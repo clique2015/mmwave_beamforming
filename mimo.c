@@ -347,7 +347,8 @@ uint32_t configureStaticBFChirp(uint8_t devId, rlChirpCfg_t chirpCfg, rlRfPhaseS
     
     /* Enable TX0, TX1 and TX2 */
     chirpCfg.txEnable = 0x07;
-
+    chirpCfg.chirpStartIdx = 0;
+    chirpCfg.chirpEndIdx = NUM_CHIRPS;
     status = MMWL_chirpConfig(createDevMapFromDevId(devId),chirpCfg);
 
     if (status != 0)
@@ -383,7 +384,8 @@ uint32_t configureDynBFChirp(uint8_t devId, rlChirpCfg_t chirpCfg, rlDynPerChirp
     
     /* Enable TX0, TX1 and TX2 */
     chirpCfg.txEnable = 0x07;
-
+    chirpCfg.chirpStartIdx = 0;
+    chirpCfg.chirpEndIdx = NUM_CHIRPS;
     status = MMWL_chirpConfig(createDevMapFromDevId(devId),chirpCfg);
 
     if (status != 0)
