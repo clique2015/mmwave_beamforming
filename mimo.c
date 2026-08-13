@@ -593,10 +593,9 @@ uint32_t configure (devConfig_t config) {
     "[ALL] Profile configuration successful!",
     "[ALL] Profile configuration failed!", config.deviceMap, TRUE);
 
-  // MIMO Chirp configuration
+  // RadarMode Chirp configuration
   for (uint8_t devId = 0; devId < 4; devId++) {
 
-    /* PullReq1 */
     switch(BEAMFORMING)
     {
         case MIMO:
