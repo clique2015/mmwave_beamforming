@@ -33,6 +33,7 @@
 #define CGREEN    "\e[0;32m"    // Terminal code for regular greed text
 #define CRESET    "\e[0m"       // Clear reset terminal color
 
+/** Device Mode*/
 typedef enum {
     MIMO,
     STATIC_BEAMFORMING,
