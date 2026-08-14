@@ -288,7 +288,7 @@ rlDevCsi2Cfg_t csi2LaneCfgArgs = {
 |-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
 */
 
-RadarMode BEAMFORMING = MIMO;
+RadarMode beamforming = MIMO;
 
 /**
  * @brief Check if a value is in the table provided in argument
