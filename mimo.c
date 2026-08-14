@@ -49,7 +49,7 @@ const rlProfileCfg_t profileCfgArgs = {
 /** Frame config */
 const rlFrameCfg_t frameCfgArgs = {
   .chirpStartIdx = 0,
-  .chirpEndIdx = 31,
+  .chirpEndIdx = 11,
   .numFrames = 0,                 // (0 for infinite)
   .numLoops = 16,
   .numAdcSamples = 2 * 256,       // Complex samples (for I and Q siganls)
