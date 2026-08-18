@@ -596,7 +596,7 @@ uint32_t configure (devConfig_t config) {
   // RadarMode Chirp configuration
   for (uint8_t devId = 0; devId < 4; devId++) {
 
-    switch(BEAMFORMING)
+    switch(beamforming)
     {
         case MIMO:
             status += configureMimoChirp(devId, config.chirpCfg);
@@ -824,7 +824,7 @@ int main (int argc, char *argv[]) {
   parse(&parser, argc, argv);
 
   if ((unsigned char *)get_option(&parser, "beamforming") != NULL) {
-    BEAMFORMING = *(int *)get_option(&parser, "beamforming");
+    beamforming = *(int *)get_option(&parser, "beamforming");
 }
   
   // Print help
@@ -869,10 +869,10 @@ int main (int argc, char *argv[]) {
   config.lpmCfg = lpmCfgArgs;
   config.miscCfg = miscCfgArgs;
 
-if(BEAMFORMING == STATIC_BEAMFORMING)
+if(beamforming == STATIC_BEAMFORMING)
   config.beamCfg = beamCfgArgs;
 else
-if(BEAMFORMING == DYNAMIC_BEAMFORMING)
+if(beamforming == DYNAMIC_BEAMFORMING)
  config.dynBeamCfg = dynBeamCfgArgs;
   
   if (config_filename != NULL) {
