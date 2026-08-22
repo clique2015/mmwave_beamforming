@@ -1525,8 +1525,7 @@ int MMWL_dynamicPhaseShiftConfig( unsigned char deviceMap, rlDynPerChirpPhShftCf
     );
 
     retVal = CALL_API(
-        API_TYPE_C,
-        SET_DYN_PER_PERCHIRP_PH_SHIFTER_CFG_IND,
+        API_TYPE_C | SET_DYN_PER_PERCHIRP_PH_SHIFTER_CFG_IND,
         deviceMap,
         &dynPhaseShiftCfgArgs,
         1U
