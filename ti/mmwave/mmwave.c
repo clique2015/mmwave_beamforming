@@ -1493,8 +1493,7 @@ int MMWL_phaseShiftConfig(unsigned char deviceMap, rlRfPhaseShiftCfg_t phaseShif
     );
 
     retVal = CALL_API(
-        API_TYPE_C,
-        RF_SET_PHASE_SHIFT_CONFIG_IND,
+        API_TYPE_C | RF_SET_PHASE_SHIFT_CONFIG_IND,
         deviceMap,
         &phaseShiftCfgArgs,
         1U
